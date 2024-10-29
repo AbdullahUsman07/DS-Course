@@ -16,7 +16,7 @@ public:
         data = new T[SIZE];
     }
 
-    void push(int data) const
+    void push(T &data)
     {
 
         if (this->top == SIZE - 1)
@@ -43,7 +43,8 @@ public:
 
     Stack(const Stack & other)
     { 
-        this=other;
+        this->data=nullptr;
+        operator=(other);
     }
 
     // returns the current size of stack 
@@ -83,18 +84,12 @@ public:
         }
     }
 
-    template <typename T>
-    friend bool operator==(const Stack &, const Stack &);
-    template <typename T>
-    friend bool operator!=(const Stack &const Stack &);
-    template <typename T>
-    friend bool operator<(const Stack &, const Stack &);
-    template <typename T>
-    friend bool operator<=(const Stack &, const Stack &);
-    template <typename T>
-    friend bool operator>=(const Stack &, const Stack &);
-    template <typename T>
-    friend bool operator>(const Stack &, const Stack &);
+    friend bool operator== <>(const Stack &, const Stack &);
+    friend bool operator!= <>(const Stack &,const Stack &);
+    friend bool operator< <>(const Stack &, const Stack &);
+    friend bool operator<= <>(const Stack &, const Stack &);
+    friend bool operator>= <>(const Stack &, const Stack &);
+    friend bool operator> <>(const Stack &, const Stack &);
 };
 
 template <typename T>
