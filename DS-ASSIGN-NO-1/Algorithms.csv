@@ -1,0 +1,14 @@
+Program Execution no ,10
+Algorithm's Name ,Array Type , Array Size,Average Time Taken
+Correct Selection Sort,Random Generated,1000,0.9 ms
+Incorrect Selection Sort,Random Generated,1000,1.2 ms
+Bubble Sort,Random Generated,1000,5 ms
+Insertion Sort,Random Generated,1000,0.5 ms
+Correct Selection Sort,Ascending Sort,1000,0 ms
+Incorrect Selection Sort,Ascending Sort,1000,1.5 ms
+Bubble Sort,Ascending Sort,1000,1.4 ms
+Insertion Sort,Ascending Sort,1000,0 ms
+Correct Selection Sort,Deascending Sort,1000,1 ms
+Incorrect Selection Sort,Deascending Sort,1000,6.3 ms
+Bubble Sort,Deascending Sort,1000,3.4 ms
+Insertion Sort,Deascending Sort,1000,1.4 ms
