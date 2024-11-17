@@ -171,13 +171,13 @@ bool operator <(const queue<T>&lhs , const queue<T>& rhs)
 			return true;
 
 		if (lhs.data[i] > rhs.data[j])
-			return fasle;
+			return false;
 
 		i = (i + 1) % lhs.total_size;
 		j = (j + 1) % rhs.total_size;
 	}
 
-	retrun(lhs.SIZE() < rhs.SIZE());
+	return( lhs.SIZE() < rhs.SIZE());
 
 }
 
