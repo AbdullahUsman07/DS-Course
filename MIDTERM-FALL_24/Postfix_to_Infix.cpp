@@ -49,10 +49,10 @@ std::string convert_to_infix(std::string& postfix)
 }
 // A*(B+C)/(D-E)+F*G
 
-int main()
-{
-	std::string postfix = "ABC+*DE-/FG*+";
-	std::string infix = convert_to_infix(postfix);
-	std::cout << " Postfix: " << postfix << "\n" << " Infix: " << infix << "\n";
-}
+//int main()
+//{
+//	std::string postfix = "ABC+*DE-/FG*+";
+//	std::string infix = convert_to_infix(postfix);
+//	std::cout << " Postfix: " << postfix << "\n" << " Infix: " << infix << "\n";
+//}
 

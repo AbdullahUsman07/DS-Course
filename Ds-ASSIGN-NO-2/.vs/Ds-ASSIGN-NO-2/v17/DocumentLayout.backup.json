@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\DS FALL 24 GitHub\\Ds-ASSIGN-NO-2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A3D62B88-E628-4E00-89DB-FCB8F5F508A8}|Ds-ASSIGN-NO-2.vcxproj|D:\\DS FALL 24 GitHub\\Ds-ASSIGN-NO-2\\Ds-ASSIGN-NO-2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A3D62B88-E628-4E00-89DB-FCB8F5F508A8}|Ds-ASSIGN-NO-2.vcxproj|solutionrelative:Ds-ASSIGN-NO-2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Ds-ASSIGN-NO-2.cpp",
+              "DocumentMoniker": "D:\\DS FALL 24 GitHub\\Ds-ASSIGN-NO-2\\Ds-ASSIGN-NO-2.cpp",
+              "RelativeDocumentMoniker": "Ds-ASSIGN-NO-2.cpp",
+              "ToolTip": "D:\\DS FALL 24 GitHub\\Ds-ASSIGN-NO-2\\Ds-ASSIGN-NO-2.cpp",
+              "RelativeToolTip": "Ds-ASSIGN-NO-2.cpp",
+              "ViewState": "AgIAAIMAAAAANjMzM7MkwIsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-27T05:28:54.739Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
