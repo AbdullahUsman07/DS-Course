@@ -173,7 +173,7 @@ int main()
 	 when the program will run again it will read the previous average values and calculate the new ones*/
 
 
-	std::fstream File_("Average_time.dat", std::ios::in,std::ios::binary);
+	std::fstream File_("Average_time.dat", std::ios::in|std::ios::binary);
 	int no_of_times = 0; // this will read how many times the program is runned
 	File_.read((char*)&no_of_times, sizeof(int));
 	no_of_times++;
