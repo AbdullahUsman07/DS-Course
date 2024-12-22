@@ -33,6 +33,17 @@ DS-THEORY/DS-THEORY.vcxproj
 DS-THEORY/DS-THEORY.vcxproj.filters
 DS-THEORY/DS-THEORY.vcxproj.user
 
+info/.vs
+info/x64
+info/info/
+info/info.sln
+info/info.vcxproj
+info/info.vcxproj.filters
+info/info.vcxproj.user
+info/Codes.dat
+info/Fruits.dat
+
+
 
 
 
