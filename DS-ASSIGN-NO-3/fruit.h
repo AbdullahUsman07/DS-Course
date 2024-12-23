@@ -1,3 +1,4 @@
+#pragma once
 #include<iostream>
 #include<list>
 #include<iomanip>
@@ -34,7 +35,7 @@ public:
 			for (int i = 0; i < prev_size; i++) {
 				file_.read((char*)&temp, sizeof(item));
 				this->fruit.push_front(temp);
-				
+
 			}
 			file_.close();
 		}
@@ -62,10 +63,10 @@ public:
 		return size;
 	}
 
-	
+
 
 	// this function return iterator to the Node
-	std::list<item>::iterator find(int code=-1, const char name[] = "dummy") {
+	std::list<item>::iterator find(int code = -1, const char name[] = "dummy") {
 		std::list<item>::iterator temp;
 		temp = this->fruit.begin();
 
@@ -78,12 +79,12 @@ public:
 				++temp;
 			}
 		}
-	
+
 		else if (std::strcmp(name, "dummy") != 0)
 		{
 			while (temp != fruit.end())
 			{
-				if (std::strcmp(temp->name,name)==0) {
+				if (std::strcmp(temp->name, name) == 0) {
 					return temp;
 				}
 				++temp;
@@ -134,7 +135,7 @@ public:
 		std::fstream _file("Codes.dat", std::ios::in | std::ios::binary);
 		int code_size = 0;
 		_file.read((char*)&code_size, sizeof(int));
-		
+
 
 		int* codes = nullptr;
 		if (code_size != 0) {
@@ -152,7 +153,7 @@ public:
 		}
 
 		_file.close();
-		if(codes!=nullptr){
+		if (codes != nullptr) {
 			delete[]codes;
 		}
 		return false;
@@ -207,7 +208,7 @@ public:
 		file.seekp(0, std::ios::end);
 		auto it = this->fruit.begin();
 
-		for (int i = 0; i < (curr_size-prev_size); i++) {
+		for (int i = 0; i < (curr_size - prev_size); i++) {
 			file.write((char*)&(*it), sizeof(item));
 			it++;
 		}
@@ -222,10 +223,8 @@ public:
 		std::cin >> count;
 		item temp;
 
-		//int prev_size = get_prev_size();
 
-		
-		std::fstream file("Fruits.dat", std::ios::out | std::ios::in| std::ios::binary | std::ios::ate);
+		std::fstream file("Fruits.dat", std::ios::out | std::ios::in | std::ios::binary | std::ios::ate);
 		if (!file) {
 			std::cout << " File Cannot be Opened!";
 			return;
@@ -238,7 +237,7 @@ public:
 			do {
 				std::cout << " Enter Fruit's Code (Must Be Unique): ";
 				std::cin >> temp.code;
-			} while (code_validate(temp.code)|| temp.code<0);
+			} while (code_validate(temp.code) || temp.code < 0);
 			write_code(temp.code);
 			std::cout << " Enter Fruit's Name (Maximum 20 characters): ";
 			std::cin >> temp.name;
@@ -253,27 +252,11 @@ public:
 			fruit.push_front(temp);
 		}
 
-		/*int size = count;
-
-		if (prev_size != 0) {
-			size += prev_size;
-		}
-		file.seekp(0, std::ios::beg);
-		file.write((char*)&size, sizeof(int));
-
-		file.seekp(0, std::ios::end);
-		auto it = fruit.begin();
-		for (int i = 0; i < count; i++) {
-			file.write((char*)&(*it), sizeof(item));
-			it++;
-		}
-
-		file.close();*/
 		append_data(count);
 	}
-	
-	
-	
+
+
+
 	void search()
 	{
 		std::list<item>::iterator temp;
@@ -291,7 +274,7 @@ public:
 				temp = find(code);
 			}
 
-			else if(choice =='n' || choice =='N') {
+			else if (choice == 'n' || choice == 'N') {
 				char name[20];
 				std::cin.ignore();
 				std::cout << " Input Name: ";
@@ -300,34 +283,34 @@ public:
 			}
 		} while (choice != 'c' && choice != 'n' && choice != 'C' && choice != 'N');
 
-			if (temp != fruit.end()) {
-				std::cout << " Code:            " << temp->code << " \n";
-				std::cout << " Name:            " << temp->name << " \n";
-				std::cout << " Price:           " << temp->price << " \n";
-				std::cout << " Available Stock: " << temp->stock << " \n";
-			}
-			else
-			{
-				std::cout << " Value Not Found!\n";
-			}
-		
+		if (temp != fruit.end()) {
+			std::cout << " Code:            " << temp->code << " \n";
+			std::cout << " Name:            " << temp->name << " \n";
+			std::cout << " Price:           " << temp->price << " \n";
+			std::cout << " Available Stock: " << temp->stock << " \n";
+		}
+		else
+		{
+			std::cout << " Value Not Found!\n";
+		}
+
 	}
 
 	void del()
 	{
 		char choice;
-		
+
 		std::list<item>::iterator it;
-		
+
 
 		int prev_size = get_prev_size();
-		
+
 
 		// this means that data exist in files
 		if (prev_size != 0) {
 			// this will load all the data from Binary File into data member
-			
-			
+
+
 			do {
 				std::cout << " Search By Name  [N/n]: \n";
 				std::cout << " Search By Code  [C/c]: \n";
@@ -371,30 +354,30 @@ public:
 				}
 			} while (choice != 'n' && choice != 'c' && choice != 'N' && choice != 'C');
 
-			
-				// removing the item from the file
+
+			// removing the item from the file
 			prev_size--;
 			std::ofstream file("Fruits.dat", std::ios::binary | std::ios::trunc);
 			file.write((char*)&prev_size, sizeof(int));
 			for (it = this->fruit.begin(); it != this->fruit.end(); it++) {
 				file.write((char*)&(*it), sizeof(item));
 			}
-			
+
 
 			std::cout << " Item Deleted Successfully\n";
 			return;
-			
+
 		}
 
 		else {
 			std::cout << " Nothing to Delete (Empty Files)\n";
 		}
 
-		
+
 
 	}
 
-	
+
 	void display() {
 
 
@@ -402,20 +385,20 @@ public:
 		temp = this->fruit.begin();
 		int size = this->fruit.size();
 
-		
+
 		int i = 1;
 		if (temp == this->fruit.end()) {
 			std::cout << "Data Not Found!\n";
 			return;
 		}
-		while (temp!=this->fruit.end())
+		while (temp != this->fruit.end())
 		{
 			std::cout << "\n" << std::setfill('-') << std::setw(20) << "" << " Item No " << i << " " << std::setfill('-') << std::setw(20) << "\n";
 			std::cout << " Code:            " << temp->code << " \n";
 			std::cout << " Name:            " << temp->name << " \n";
 			std::cout << " Price:           " << temp->price << " \n";
 			std::cout << " Available Stock: " << temp->stock << " \n";
-			++temp,i++;
+			++temp, i++;
 		}
 
 	}
@@ -510,7 +493,7 @@ public:
 			std::cout << " Item Updated Successfully!\n";
 			return;
 		}
-		
+
 		else
 		{
 			std::cout << "Cannot Find Item!\n";
@@ -519,16 +502,16 @@ public:
 
 	void Export(const std::string& filepath) {
 
-		std::ofstream file(filepath,std::ios::trunc);
+		std::ofstream file(filepath, std::ios::trunc);
 
 		if (this->fruit.size() != 0) {
-			
+
 			// first writing the number of items 
 			file << this->fruit.size() << ",";
 			//moving to the next line
 			file << "\n";
 
-			file << "Code" << "," << "Name" << "," << "Price" << "," << "Stock" <<"," << "\n";
+			file << "Code" << "," << "Name" << "," << "Price" << "," << "Stock" << "," << "\n";
 
 			std::list<item>::iterator temp;
 			temp = this->fruit.begin();
@@ -545,12 +528,12 @@ public:
 
 	}
 
-	void import(const std::string& filepath) {
+	void import(const std::string & filepath) {
 
 		std::ifstream file(filepath);
-		
 
-		
+
+
 		std::string temp;
 		std::getline(file, temp, '\n');
 		item F;
@@ -565,14 +548,14 @@ public:
 			temp = "-";
 
 			for (int i = 1; i <= size; i++) {
-				std::getline(file, temp,',');
+				std::getline(file, temp, ',');
 				F.code = std::stoi(temp);
 				write_code(F.code);
-				std::getline(file, temp,',');
+				std::getline(file, temp, ',');
 				strcpy_s(F.name, temp.c_str());
-				std::getline(file, temp,',');
+				std::getline(file, temp, ',');
 				F.price = std::stoi(temp);
-				std::getline(file, temp,',');
+				std::getline(file, temp, ',');
 				F.stock = std::stoi(temp);
 				this->fruit.push_front(F);
 			}
@@ -585,7 +568,7 @@ public:
 			std::cout << "File in Empty Nothing to Import\n";
 		}
 	}
-	
+
 
 };
 
@@ -595,113 +578,8 @@ void showHelp() {
 	std::string temp;
 
 	while (!file.eof()) {
-		getline(file,temp);
-		std::cout << temp<<"\n";
+		getline(file, temp);
+		std::cout << temp << "\n";
 	}
 	file.close();
-}
-
-int main(int argc, char* argv[])
-{
-	char choice ;
-	Fruit<item> f;
-	f.load_data();
-
-	if (argc == 1)
-	{
-		do {
-			// display the main menu
-			std::cout << "\n\n\n\n";
-			std::cout << "\t\t" << std::setfill('*') << std::setw(20) << "" << " Welcome to Saddar Fruit Market " << std::setw(20) << "" << "\n";
-			std::cout << "\t\t" << std::setfill(' ') << std::setw(20) << "" << " Search Item   [S/s]\n";
-			std::cout << "\t\t" << std::setfill(' ') << std::setw(20) << "" << " Add Item      [A/d]\n";
-			std::cout << "\t\t" << std::setfill(' ') << std::setw(20) << "" << " Delete Item   [D/d]\n";
-			std::cout << "\t\t" << std::setfill(' ') << std::setw(20) << "" << " Update Item   [U/u]\n";
-			std::cout << "\t\t" << std::setfill(' ') << std::setw(20) << "" << " Export Items  [E/e]\n";
-			std::cout << "\t\t" << std::setfill(' ') << std::setw(20) << "" << " Import Items  [I/i]\n";
-			std::cout << "\t\t" << std::setfill(' ') << std::setw(20) << "" << " Display Items [P/p]\n";
-			std::cout << "\t\t" << std::setfill(' ') << std::setw(20) << "" << " Show Help     [H/h]\n";
-			
-			std::cout << "\t\t" << std::setfill(' ') << std::setw(20) << "" << " Terminate     [X/x] ";
-			std::cin >> choice;
-			if (choice == 'a' ||choice=='A') {
-				f.add();
-			}
-			else if (choice == 'p' || choice=='P') {
-				f.display();
-			}
-			else if (choice == 'd' || choice=='D') {
-				f.del();
-			}
-			else if (choice == 's' || choice =='S')
-			{
-				f.search();
-			}
-			else if (choice == 'u' || choice == 'U') {
-				f.update();
-			}
-			else if (choice == 'e' || choice == 'E') {
-				std::cout << " Enter FilePath\n";
-				std::cin.ignore();
-				std::string filePath;
-				std::getline(std::cin, filePath);
-				f.Export(filePath);
-			}
-			else if (choice == 'i' || choice == 'I') {
-				std::cout << " Enter FilePath\n";
-				std::cin.ignore();
-				std::string filePath;
-				std::getline(std::cin, filePath);
-				f.import(filePath);
-			}
-			else if (choice == 'h' || choice == 'H') {
-				showHelp();
-			}
-		} while (choice != 'x' && choice != 'X');
-		
-	}
-	else if(argc==2)
-	{
-		if (std::strcmp(argv[1], "display")==0) {
-			f.display();
-		}
-		else if (std::strcmp(argv[1], "update")==0) {
-			f.update();
-		}
-		else if (std::strcmp(argv[1], "search")==0) {
-			f.search();
-		}
-		else if (std::strcmp(argv[1], "add")==0) {
-			f.add();
-		}
-		else if (std::strcmp(argv[1], "delete")==0) {
-			f.del();
-		}
-		else if (std::strcmp(argv[1], "help") == 0) {
-			showHelp();
-		}
-		else {
-			std::cout << "Cannot!\n";
-		}
-	}
-
-	else if(argc==3)
-	{
-		if (std::strcmp(argv[1], "export") == 0)
-		{
-			std::string filePath = argv[2];
-			f.Export(filePath);
-		}
-		else if (std::strcmp(argv[1], "import") == 0)
-		{
-			std::string filePath = argv[2];
-			f.import(filePath);
-		}
-	}
-	else {
-		std::cout << "For Help Enter Command (info.exe help)\n";
-	}
-
-
-	return 0;
 }
