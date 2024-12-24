@@ -118,7 +118,7 @@ public:
 			else
 			{
 				// the second smallest can be found be getting the sucessor
-				this->H->left = successor;
+				this->H->left = succ;
 			}
 		}
 
@@ -204,13 +204,15 @@ public:
 			
 
 			// This case will check if the succesor is the leaf node
-			if (succ_parent == ptr) {
+			if (parent_succ == ptr) {
 				
 				// now we need to check if the node we want to delete is on
 				// its right side of the parent or left
 				if (ptr == parent->left) {
 					parent->left = succ;
 					succ->parent = parent;
+					succ->right = ptr->right;
+					ptr->right->parent = succ;
 					delete ptr;
 					return true;
 				}
@@ -218,12 +220,53 @@ public:
 				else {
 					parent->right = succ;
 					succ->parent = parent;
+					succ->right = ptr->right;
+					ptr->right->parent = succ;
 					delete ptr;
 					return true;
 				}
 			}
+			
+			// we are deleting the root node
 
+			else if (parent == this->H) {
+				succ->right = ptr->right;
+				ptr->right->parent = succ;
+				succ->left = ptr->left;
+				ptr->left->parent = succ;
+				succ->parent = parent;
+				this->H->parent = succ;
+				delete ptr;
+				return true;
+			}
 
+			else {
+
+				// check if the node is on right side or left
+				if (parent->right == ptr) {
+					parent->right = succ;
+					succ->parent = parent;
+					succ->right = parent_succ;
+					parent_succ->left = this->H;
+					parent_succ->parent = succ;
+					succ->left = ptr->left;
+					ptr->left->parent = succ;
+					delete ptr;
+					return true;
+				}
+
+				else {
+					parent->left = succ;
+					succ->parent = parent;
+					succ->right = parent_succ;
+					parent_succ->parent = succ;
+					parent_succ->right = this->H;
+					succ->left = ptr->left;
+					ptr->left->parent = succ;
+					delete ptr;
+					return true;
+				}
+			}
 
 		}
 	}
