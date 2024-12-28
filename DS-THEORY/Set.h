@@ -77,10 +77,64 @@ namespace cs211 {
 				}
 			}
 
-			iterator++(int) {
+			iterator operator++(int) {
 				iterator old;
 				old = this->ptr;
 				this->operator ++();
+				return old;
+			}
+
+			iterator operator --() {
+
+				tNode<K>* ptr;
+				tNode<K>* parent;
+				ptr = this->ptr;
+				parent = ptr->parent;
+
+				// if we are at the root node we need to move to its predecessor
+
+				if (ptr->right->is_Head == false && ptr->left->is_Head == false) {
+
+					ptr = ptr->left;
+
+					while (ptr->right->is_Head == false) {
+						ptr = ptr->right;
+					}
+
+					this->ptr = ptr;
+					return *this;
+				}
+				
+				// if the node is at the right side of its parent node we need to move to its parent
+
+				else if (ptr == parent->right) {
+					
+					ptr = parent;
+					parent = ptr->parent;
+					this->ptr = ptr;
+					return *this;
+					
+					
+
+				}
+
+				else {
+
+					while (ptr == parent->left && parent->is_Head == false)
+					{
+						ptr = parent;
+						parent = ptr->parent;
+					}
+
+					this->ptr = parent;
+					return *this;
+				}
+			}
+
+			iterator operator --(int) {
+				iterator old;
+				old.ptr = this->ptr;
+				this->operator--();
 				return old;
 			}
 		};
@@ -92,6 +146,18 @@ namespace cs211 {
 		}
 
 		iterator end() {
+			iterator temp;
+			temp.ptr = this->H;
+			return temp;
+		}
+
+		iterator rbegin() {
+			iterator temp;
+			temp.ptr = this->H->right;
+			return temp;
+		}
+
+		iterator rend() {
 			iterator temp;
 			temp.ptr = this->H;
 			return temp;
