@@ -17,14 +17,31 @@ namespace cs211 {
 	class set {
 	private:
 		tNode<K>* H;
-
+		int SIZE;
 	public:
 		set()
 		{
-			H = new tNode<K>;
-			H->parent = H;
-			H->left = H;
-			H->is_Head = true;
+			this->H = new tNode<K>;
+			this->H->parent = H;
+			this->H->left = H;
+			this->H->is_Head = true;
+			this->SIZE = 0;
+		}
+
+		void delset(tNode<K>* node) {
+
+			if (node->is_Head) {
+				return;
+			}
+
+			delset(node->left);
+			delset(node->right);
+
+			del node;
+		}
+
+		~set() {
+			delset(this->H->parent);
 		}
 
 		class iterator {
@@ -93,7 +110,7 @@ namespace cs211 {
 
 				// if we are at the root node we need to move to its predecessor
 
-				if (ptr->right->is_Head == false && ptr->left->is_Head == false) {
+				if (ptr->left->is_Head == false) {
 
 					ptr = ptr->left;
 
@@ -392,6 +409,16 @@ namespace cs211 {
 			}
 		}
 
+		int size()const {
+			return this->SIZE;
+		}
+
+		bool contains(const K& key) {
+
+			iterator temp = find(key);
+			return temp.ptr != this->H;
+		}
+
 		void insert(const K& val) {
 
 			// creating the new tNode
@@ -401,6 +428,7 @@ namespace cs211 {
 			nn->left = this->H;
 			nn->right = this->H;
 			nn->is_Head = false;
+			this->SIZE++;
 
 			tNode<K>* temp;
 			temp = this->H->parent;
@@ -437,6 +465,7 @@ namespace cs211 {
 					{
 						// this means the value is equal
 						delete nn;
+						this->SIZE++;
 						return;
 					}
 				}
@@ -451,13 +480,5 @@ namespace cs211 {
 				}
 			}
 		}
-
-
-
-
-
-
-
-
 	};
 }
