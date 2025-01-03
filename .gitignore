@@ -8,7 +8,13 @@ LAB TASKS/LAB TASKS.sln
 LAB TASKS/LAB TASKS.vcxproj
 LAB TASKS/LAB TASKS.vcxproj.filters
 LAB TASKS/LAB TASKS.vcxproj.user
-LAB TASKS
+LAB TASKS/x64/Debug/
+LAB TASKS/forward_list.Help
+LAB TASKS/LAB TASKS
+LAB TASKS/list.h
+LAB TASKS/newData.txt
+LAB TASKS/main.cpp
+LAB TASKS/forward_list.h
 
 MIDTERM-FALL_24/x64
 MIDTERM-FALL_24/.vs
@@ -46,7 +52,7 @@ DS-ASSIGN-NO-3/FruitList.csv
 DS-ASSIGN-NO-3/Help.txt
 DS-ASSIGN-NO-3/04072313020-Abdullah.zip
 
-
+ConsoleApplication1/
 
 
 

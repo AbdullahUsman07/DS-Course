@@ -1,4 +1,3 @@
-﻿  forward_list.h
-  main.cpp
-  Generating Code...
+﻿  03-01-25.cpp
+D:\DS FALL 24 GitHub\LAB TASKS\03-01-25.cpp(40,11): warning C4834: discarding return value of function with [[nodiscard]] attribute
   LAB TASKS.vcxproj -> D:\DS FALL 24 GitHub\LAB TASKS\x64\Debug\LAB TASKS.exe
