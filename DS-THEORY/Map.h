@@ -1,49 +1,50 @@
 #pragma once
 
-template<typename K>
-struct tNode {
-	K data;
-	tNode<K>* left;
-	tNode<K>* right;
-	tNode<K>* parent;
-	bool is_Head;
-	tNode() {
-		is_Head = true;
+#include<iostream>
+
+template<typename K, typename V>
+struct mTNode {
+	std::pair<K, V> data;
+	mTNode<K, V>* left;
+	mTNode<K, V>* parent;
+	mTNode<K, V>* right;
+	bool is_H;
+	mtNode() {
+		is_H = true;
 	}
 };
 
 namespace cs211 {
-	template<typename K>
-	class set {
+	template<typename K, typename V>
+	class map {
 	private:
-		tNode<K>* H;
+		mTNode<K, V>* H;
 		int SIZE;
+
 	public:
-		set()
-		{
-			this->H = new tNode<K>;
+		map() {
+			this->H = new mTNode<K, V>;
 			this->H->parent = this->H;
-			this->H->left = this->H;
 			this->H->right = this->H;
-			this->H->is_Head = true;
+			this->H->left = this->H;
+			this->H->is_H=true;
 			this->SIZE = 0;
 		}
 
-		void delset(tNode<K>* node) {
-
-			if (node->is_Head) {
+		void delmap(mTNode<K, V>* node) {
+			if (node->is_H) {
 				return;
 			}
 
-			delset(node->left);
-			delset(node->right);
+			delmap(node->right);
+			delmap(node->left);
 
 			del node;
 		}
 
-		~set() {
+		~map() {
 			if (this->H->parent != this->H) {
-				delset(this->H->parent);
+				delmap(this->H->parent);
 			}
 
 			delete this->H;
@@ -51,15 +52,12 @@ namespace cs211 {
 
 		class iterator {
 		private:
-			tNode<K>* ptr;
-			friend set;
+			mTNode<K, V>* ptr;
+			friend map;
 
 		public:
-			iterator() :ptr(nullptr) {};
 
-			K operator *() {
-				return this->ptr->data;
-			}
+			iterator() :ptr(nullptr) {};
 
 			bool operator ==(const iterator& other) {
 				return this->ptr == other.ptr;
@@ -70,14 +68,13 @@ namespace cs211 {
 			}
 
 			iterator operator ++() {
-
-				tNode<K>* ptr;
+				mTNode<K, V>* ptr;
 				ptr = this->ptr;
-
-				if (ptr->right->is_Head != true) {
+				
+				if (ptr->right->is_H != true) {
 					ptr = ptr->right;
 
-					while (ptr->left->is_Head != true) {
+					while (ptr->left->is_H != true) {
 						ptr = ptr->left;
 					}
 
@@ -86,20 +83,20 @@ namespace cs211 {
 				}
 
 				else {
-					tNode<K>* _parent;
-					_parent = ptr->parent;
+					mTNode<K, V>* parent;
+					parent = ptr->parent;
+					while (ptr == parent->right && ptr->parent->is_H != true) {
 
-					while (ptr == _parent->right && ptr->parent->is_Head != true) {
-						ptr = _parent;
-						_parent = ptr->parent;
+						ptr = parent;
+						parent = ptr->parent;
 					}
+					this->ptr = parent;
 
-					this->ptr = _parent;
 					return *this;
 				}
 			}
 
-			iterator operator++(int) {
+			iterator operator ++(int) {
 				iterator old;
 				old.ptr = this->ptr;
 				this->operator ++();
@@ -108,10 +105,12 @@ namespace cs211 {
 
 			iterator operator --() {
 
-				tNode<K>* ptr;
-				tNode<K>* parent;
+				mTNode<K, V>* ptr;
+				mTNode<K, V>* parent;
+
 				ptr = this->ptr;
 				parent = ptr->parent;
+
 
 				// if we are at the root node we need to move to its predecessor
 
@@ -126,16 +125,16 @@ namespace cs211 {
 					this->ptr = ptr;
 					return *this;
 				}
-				
+
 				// if the node is at the right side of its parent node we need to move to its parent
 
 				else if (ptr == parent->right) {
-					
+
 					ptr = parent;
 					parent = ptr->parent;
 					this->ptr = ptr;
 					return *this;
-					
+
 				}
 
 				else {
@@ -154,9 +153,29 @@ namespace cs211 {
 			iterator operator --(int) {
 				iterator old;
 				old.ptr = this->ptr;
-				this->operator--();
+				this->operator --();
 				return old;
 			}
+
+			std::pair<K, V> operator *() {
+				return ptr->data;
+			}
+
+			std::pair<K, V>* operator ->() {
+				return ptr->data;
+			}
+
+			V& operator [](const K& key) {
+				iterator it = this->find(key);
+				if (it == this->end()) {
+					insert({ key,V() });
+				}
+				else {
+					return it->second;
+				}
+			}
+
+
 		};
 
 		iterator begin() {
@@ -183,18 +202,18 @@ namespace cs211 {
 			return temp;
 		}
 
-		iterator find(const K& val) {
+		iterator find(const K& key) {
 
 			iterator temp;
 			temp.ptr = this->H->parent;
 
 			while (temp.ptr != this->H) {
 
-				if (temp.ptr->data == val) {
+				if (temp.ptr->data->first == key) {
 					return temp;
 				}
 
-				else if (temp.ptr->data < val) {
+				else if (temp.ptr->data->first < key) {
 					temp.ptr = temp.ptr->right;
 				}
 
@@ -206,35 +225,103 @@ namespace cs211 {
 			return temp;
 		}
 
-		tNode<K>* successor(const tNode<K>* ptr)
-		{
+		mTNode<K, V>* sucessor(const mTNode<K,V>* ptr) {
 
 			// to find the successor
 			// first go to right
 			// then go to left untill dummy head is found
 
-		   tNode<K> *temp = ptr->right;
+			mTNode<K, V>* temp = ptr->right;
 			while (temp->left != this->H) {
 				temp = temp->left;
 			}
 			return temp;
-
+			
 		}
 
-		tNode<K>* predecessor(const tNode<K>* ptr) {
+		mTNode<K, V>* predecessor(const mTNode<K, V>) {
 
 			// to find the predecessor 
 			// first go the left
 			// go to right untill dummy head is found
 
-			tNode<K> *temp = ptr->left;
+			mTNode<K, V>* temp = ptr->left;
 			while (temp->right != this->H) {
 				temp = temp->right;
 			}
 			return temp;
 		}
 
+		int size()const {
+			return this->SIZE;
+		}
 
+		bool contains(const K& key) {
+
+			iterator temp = find(key);
+			return temp.ptr != this->H;
+		}
+
+		void insert(const std::pair<K, V> data) {
+
+			mTNode<K, V>* nn;
+			mTNode<K, V>* temp;
+
+			temp = this->H->parent;
+			nn = new mTNode<K, V>;
+			nn->data = data;
+			nn->is_H->false;
+			nn->left = this->H;
+			nn->right = this->H;
+			this->SIZE++;
+
+			if (temp == this->H) { // this means it is the Root Node
+				nn->parent = temp;
+				this->H->parent = nn;
+				this->H->left = nn;
+				this->H->right = nn;
+			}
+
+			else {
+				while (true)
+				{
+					if (nn->data->fisrt < temp->data->first)
+					{
+						if (temp->left == this->H) {
+							nn->parent = temp;
+							temp->left = nn;
+							break;
+						}
+						temp = temp->left;
+					}
+					else if (nn->data->first > temp->data->first)
+					{
+						if (temp->right == this->H) {
+							nn->parent = temp;
+							temp->right = nn;
+							break;
+						}
+						temp = temp->right;
+					}
+					else
+					{
+						// this means the keys are equal
+						delete nn;
+						this->SIZE++;
+						return;
+					}
+				}
+
+				// now we have to check if the left and right of the Dnode needed update or not
+				if (nn->data->first < this->H->left->data->first)
+				{
+					this->H->left = nn;
+				}
+				else if (nn->data->first > this->H->right->data->first) {
+					this->H->right = nn;
+				}
+			}
+		}
 
 		bool erase(const K& key) {
 			iterator pos = find(key);
@@ -243,11 +330,11 @@ namespace cs211 {
 			}
 
 
-			tNode<K>* ptr = pos.ptr;
-			tNode<K>* parent = ptr->parent;
-			tNode<K>* succ = successor(ptr);
-			tNode<K>* parent_succ = succ->parent;
-			tNode<K>* pred = predecessor(ptr);
+			mTNode<K, V>* ptr = pos.ptr;
+			mTNode<K, V>* parent = ptr->parent;
+			mTNode<K, V>* succ = successor(ptr);
+			mTNode<K, V>* parent_succ = succ->parent;
+			mTNode<K, V>* pred = predecessor(ptr);
 
 			// there is a case we have to deal
 			// case A if the node we want to delete is the smallest Node
@@ -347,8 +434,6 @@ namespace cs211 {
 
 			else {
 
-
-
 				// This case will check if the succesor is the leaf node
 				if (parent_succ == ptr) {
 
@@ -411,77 +496,8 @@ namespace cs211 {
 
 			}
 		}
-
-		int size()const {
-			return this->SIZE;
-		}
-
-		bool contains(const K& key) {
-
-			iterator temp = find(key);
-			return temp.ptr != this->H;
-		}
-
-		void insert(const K& val) {
-
-			// creating the new tNode
-			tNode<K>* nn;
-			nn = new tNode<K>;
-			nn->data = val;
-			nn->left = this->H;
-			nn->right = this->H;
-			nn->is_Head = false;
-			this->SIZE++;
-
-			tNode<K>* temp;
-			temp = this->H->parent;
-
-			if (temp == this->H) { // this means it is the Root Node
-				nn->parent = temp;
-				this->H->parent = nn;
-				this->H->left = nn;
-				this->H->right = nn;
-			}
-
-			else {
-				while (true)
-				{
-					if (nn->data < temp->data)
-					{
-						if (temp->left == this->H) {
-							nn->parent = temp;
-							temp->left = nn;
-							break;
-						}
-						temp = temp->left;
-					}
-					else if (nn->data > temp->data)
-					{
-						if (temp->right == this->H) {
-							nn->parent = temp;
-							temp->right = nn;
-							break;
-						}
-						temp = temp->right;
-					}
-					else
-					{
-						// this means the value is equal
-						delete nn;
-						this->SIZE++;
-						return;
-					}
-				}
-
-				// now we have to check if the left and right of the Dnode needed update or not
-				if (nn->data < this->H->left->data)
-				{
-					this->H->left = nn;
-				}
-				else if (nn->data > this->H->right->data) {
-					this->H->right = nn;
-				}
-			}
-		}
 	};
+
+
+
 }
