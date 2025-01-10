@@ -1,0 +1,116 @@
+Introduction
+The BS Computer Science program at QAU was started in 2013. It provides a well-integrated balance of theoretical and practical knowledge required for developing reliable and usable software tools for different fields. The program enables students to design, implement and manage systems combining scientific, computational, communication and multimedia facilities in different domains. The BS program is accredited by National Computing Education Accreditation Council (NCEAC).
+
+Program Educational Objectives (Click to Expand)
+Program Learning Outcomes (Click to Expand)
+BS University Policy/Rules
+BS Program Structure
+During the B.S. students will be informed through research expertise of the faculty about the current and future issues affecting the usage and development of computer-based systems. Initially students learn basics of computing discipline through foundation courses and will build their knowledge of the discipline through core courses. In the last four semesters students will extend their knowledge in a focus area of their choice through elective courses. The final year compulsory project will give students the opportunity to consolidate and demonstrate the knowledge and skills gained from the entire course material.
+
+Focus Areas
+After providing the students with a solid foundation based on foundation and core courses in Computing, the BS program will give students the opportunity to enrich their knowledge in an area through elective courses. These elective courses will on one hand provide in-depth knowledge, and on the other will enable students to work on and solve practical problems in the area by using latest techniques and tools. Some focus areas are:
+
+Artificial Intelligence
+Data Science
+Software Engineering
+Human Centered Computing
+Information Systems
+Networks and Security
+Details about Admissions
+Courses Overview
+Four years of BS program is divided into eight semesters. In each semester, students are offered 15 to 18 credit hours of courses, where one credit hour means one hour of teaching (or three hours of lab) per week. The students have to complete 130 credit hours during their degree. The courses are divided into six groups:
+
+Computing Core courses mainly focus on the core concepts of the computing discipline. These courses are also studied by students of other computing domains like Artificial Intelligence, Data Science, Software Engineering, etc.
+Domain Core courses are related to the theoretical computer science. These courses develop the foundational concepts of the computer science domain.
+Domain Elective courses allow students to specialize in their field of interest like Artificial Intelligence, Deep Learning, Mobile Application Development, Software Engineering, Web Development, etc. They are offered in the last four semesters.
+Maths and Supporting courses develop the mathematical foundation.
+Elective Supporting course allows students to gain knowledge in supporting disciplines like social and management sciences.
+General Education courses give a breadth of knowledge to the students covering subjects like English, Mathematics, Physics, Ethics, etc.
+
+
+Schemes of Study
+Fall 2023 onwards
+Fall 2021 onwards
+
+List of Elective Courses
+Artificial Intelligence
+CSC-351: AI Assisted Programming
+CSC-425: Introduction to Computer Vision
+CSC-444: Knowledge Based Systems
+CSC-447: Neural Networks
+CSC-455: Introduction to Natural Language Processing
+CSC-458: Introduction to Data Mining
+CSC-459: Introduction to Machine learning
+CSC-460: Introduction to Deep Learning
+CSC-464: Modeling and Simulation
+CSC-480: Selected topic in CS
+Data Science
+CSC-431: Introduction to Recommender Systems
+CSC-451: Introduction to Social Computing
+CSC-454: Introduction to Semantic Web
+CSC-455: Introduction to Natural Language Processing
+CSC-458: Introduction to Data Mining
+CSC-459: Introduction to Machine learning
+CSC-460: Introduction to Deep Learning
+CSC-466: Digital Image Processing
+CSC-479: Web Information Retrieval
+CSC-480: Selected topic in CS
+CSC-521: Introduction to Data Science
+CSC-522: Introduction to Big Data Analytics
+CSC-531: Parallel and Distributed Computing
+CSC-535: Cloud DevOps
+Software Engineering
+CSC-324: Web Application Development
+CSC-355: Creative Programming for Interactive Apps and Generative Art
+CSC-417: Software Interaction Design
+CSC-421: Professional Practices
+CSC-471: Theory of Programming
+CSC-472: Information Interfaces
+CSC-474: Software testing techniques
+CSC-475: Emerging Trends in Software Development
+CSC-476: Enterprise Information
+CSC-480: Selected topic in CS
+CSC-482: Web Engineering
+CSC-483: Software Quality Assurance (Pre-Requisite CSC-322: SC)
+CSC-484: Software Engineering
+CSC-486: Software Project Management (Pre-Requisite CSC-322: SC)
+CSC-487: Formal Methods for Software Engineering
+CSC-488: Software Entrepreneurship
+CSC-491: Real Time Systems
+CSC-497: Computing Case Studies
+Human Centered Computing
+CSC-417: Software Interaction Design
+CSC-431: Introduction to Recommender Systems
+CSC-432: Information Retrieval Exploration
+CSC-472: Information Interfaces
+CSC-473: Multimedia Applications and Design
+CSC-477: Interactive Application Design
+CSC-480: Selected topic in CS
+CSC-481: Rapid Interaction Design
+Information Systems
+CSC-324: Web Application Development
+CSC-435: Frontend Web Application Frameworks
+CSC-436: Backend Web Application Frameworks
+CSC-442: Mobile Application Development
+CSC-445: Information Systems
+CSC-452: Introduction to Game Development
+CSC-454: Introduction to Semantic Web
+CSC-457: Web Application Frameworks
+CSC-472: Information Interfaces
+CSC-476: Enterprise Information Systems
+CSC-478: Web Technologies
+CSC-480: Selected topic in CS
+Networks and Security
+CSC-412: Introduction to Cyber Security
+CSC-416: Introduction to Cryptography
+CSC-443: Network Architecture
+CSC-446: Introduction to Multimedia Communication
+CSC-448: Network Management
+CSC-450: Wireless and Mobile Networks
+CSC-456: Introduction to Web Services
+CSC-461: Introduction to Blockchain Technologies
+CSC-462: Introduction to Cyber Security
+CSC-480: Selected topic in CS
+CSC-531: Parallel and Distributed Computing
+CSC-535: Cloud DevOps
+Click here to see the details about the fee structure

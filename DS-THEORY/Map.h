@@ -9,7 +9,7 @@ struct mTNode {
 	mTNode<K, V>* parent;
 	mTNode<K, V>* right;
 	bool is_H;
-	mtNode() {
+	mTNode() {
 		is_H = true;
 	}
 };
@@ -21,6 +21,46 @@ namespace cs211 {
 		mTNode<K, V>* H;
 		int SIZE;
 
+		void copyNode(mTNode<K,V>* node, mTNode<K, V>* parent_node) {
+
+			if (node->is_H) {
+				return;
+			}
+
+			mTNode<K, V>* new_node;
+			new_node = new mTNode<K, V>;
+			new_node->data = node->data;
+			new_node->is_H = false;
+			new_node->parent = parent_node;
+			new_node->left = this->H;
+			new_node->right = this->H;
+
+			if (parent_node->is_H == false && (new_node->data < parent_node->data)) {
+				parent_node->left = new_node;
+			}
+			else if (parent_node->is_H == false &&( new_node->data > parent_node->data)) {
+				parent_node->right = new_node;
+			}
+			else {
+				// this means we are creating the root node
+				parent_node->parent = new_node;
+				parent_node->left = new_node;
+				parent_node->right = new_node;
+			}
+
+			// update the values of D-Head (smallest and greatest)
+			if (new_node->data < this->H->left->data) {
+				this->H->left = new_node;
+			}
+			if (new_node->data > this->H->right->data) {
+				this->H->right = new_node;
+			}
+
+			copyNode(node->left, new_node);
+			copyNode(node->right, new_node);
+		}
+	
+
 	public:
 		map() {
 			this->H = new mTNode<K, V>;
@@ -31,15 +71,35 @@ namespace cs211 {
 			this->SIZE = 0;
 		}
 
+		
+
+		map<K, V>& operator =(map<K, V>& other) {
+			// this means the tree already contain some nodes
+			// so we have to delete it first
+			if (this->H->parent != this->H) {
+				delmap(this->H->parent);
+			}
+
+			
+			// now we will copy the nodes
+			copyNode(other.get_root_node(), this->H);
+
+			return *this;
+		}
+
 		void delmap(mTNode<K, V>* node) {
 			if (node->is_H) {
 				return;
 			}
 
-			delmap(node->right);
 			delmap(node->left);
+			delmap(node->right);
 
-			del node;
+			delete node;
+		}
+
+		mTNode<K, V>* get_root_node()const {
+			return this->H->parent;
 		}
 
 		~map() {
@@ -157,12 +217,8 @@ namespace cs211 {
 				return old;
 			}
 
-			std::pair<K, V> operator *() {
-				return ptr->data;
-			}
-
 			std::pair<K, V>* operator ->() {
-				return ptr->data;
+				return &ptr->data;
 			}
 
 			V& operator [](const K& key) {
@@ -209,11 +265,11 @@ namespace cs211 {
 
 			while (temp.ptr != this->H) {
 
-				if (temp.ptr->data->first == key) {
+				if (temp.ptr->data.first == key) {
 					return temp;
 				}
 
-				else if (temp.ptr->data->first < key) {
+				else if (temp.ptr->data.first < key) {
 					temp.ptr = temp.ptr->right;
 				}
 
@@ -239,7 +295,7 @@ namespace cs211 {
 			
 		}
 
-		mTNode<K, V>* predecessor(const mTNode<K, V>) {
+		mTNode<K, V>* predecessor(const mTNode<K, V>*ptr) {
 
 			// to find the predecessor 
 			// first go the left
@@ -270,7 +326,7 @@ namespace cs211 {
 			temp = this->H->parent;
 			nn = new mTNode<K, V>;
 			nn->data = data;
-			nn->is_H->false;
+			nn->is_H=false;
 			nn->left = this->H;
 			nn->right = this->H;
 			this->SIZE++;
@@ -285,7 +341,7 @@ namespace cs211 {
 			else {
 				while (true)
 				{
-					if (nn->data->fisrt < temp->data->first)
+					if (nn->data.first < temp->data.first)
 					{
 						if (temp->left == this->H) {
 							nn->parent = temp;
@@ -294,7 +350,7 @@ namespace cs211 {
 						}
 						temp = temp->left;
 					}
-					else if (nn->data->first > temp->data->first)
+					else if (nn->data.first > temp->data.first)
 					{
 						if (temp->right == this->H) {
 							nn->parent = temp;
@@ -313,11 +369,11 @@ namespace cs211 {
 				}
 
 				// now we have to check if the left and right of the Dnode needed update or not
-				if (nn->data->first < this->H->left->data->first)
+				if (nn->data.first < this->H->left->data.first)
 				{
 					this->H->left = nn;
 				}
-				else if (nn->data->first > this->H->right->data->first) {
+				else if (nn->data.first > this->H->right->data.first) {
 					this->H->right = nn;
 				}
 			}
@@ -495,6 +551,35 @@ namespace cs211 {
 				}
 
 			}
+		}
+
+		// Before right rotation    After right rotation
+	//
+	//      5                       4
+	//     /                       /  \
+	//    4                       3    5
+	//   /
+	//  3
+
+		mTNode<K, V>* right_rotate(mTNode<K, V>* node) {
+			node->left->right = node;
+			node->left->parent = node->parent;
+			node->parent = node->left;
+			return node->left;
+		}
+
+		// Before left rotation   After left rotation
+		// 5                            7                         
+		//  \                          / \
+		//   7                        5   8
+		//    \
+		//     8
+
+		mTNode<K, V>* left_rotate(mTNode<K, V>* node) {
+			node->right->left = node;
+			node->right->parent = node->parent;
+			node->parent = node->right;
+			return node->right;
 		}
 	};
 

@@ -38,7 +38,7 @@ namespace cs211 {
 			delset(node->left);
 			delset(node->right);
 
-			del node;
+			delete node;
 		}
 
 		~set() {
