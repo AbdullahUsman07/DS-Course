@@ -2,7 +2,7 @@
 #include<string>
 #include<stack>
 #include<fstream>
-
+#include<math.h>
 
 
 bool match_exist(char ch1, char ch2)

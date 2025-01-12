@@ -1,0 +1,8 @@
+﻿  Assignment 4.cpp
+D:\DS FALL 24 GitHub\Assignment 4\Assignment 4.cpp(57,16): warning C4305: 'argument': truncation from 'int' to '_Elem'
+D:\DS FALL 24 GitHub\Assignment 4\Assignment 4.cpp(57,16): warning C4305:         with
+D:\DS FALL 24 GitHub\Assignment 4\Assignment 4.cpp(57,16): warning C4305:         [
+D:\DS FALL 24 GitHub\Assignment 4\Assignment 4.cpp(57,16): warning C4305:             _Elem=char
+D:\DS FALL 24 GitHub\Assignment 4\Assignment 4.cpp(57,16): warning C4305:         ]
+D:\DS FALL 24 GitHub\Assignment 4\Assignment 4.cpp(57,16): warning C4309: 'argument': truncation of constant value
+  Assignment 4.vcxproj -> D:\DS FALL 24 GitHub\Assignment 4\x64\Debug\Assignment 4.exe
