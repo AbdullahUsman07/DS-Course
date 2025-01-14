@@ -87,6 +87,10 @@ namespace cs211 {
 			return *this;
 		}
 
+		map(const map<K,V>& other){
+			*this=other;
+		}
+		
 		void delmap(mTNode<K, V>* node) {
 			if (node->is_H) {
 				return;
@@ -228,6 +232,16 @@ namespace cs211 {
 				}
 				else {
 					return it->second;
+				}
+			}
+
+			v& at(const K&key){
+				iterator it=this->find(key);
+				if(it!=this->end){
+					return it->second;
+				}
+				else{
+					throw "Key Not Found!\n";
 				}
 			}
 
@@ -552,4 +566,5 @@ namespace cs211 {
 
 			}
 		}
-	}
+	};
+}
