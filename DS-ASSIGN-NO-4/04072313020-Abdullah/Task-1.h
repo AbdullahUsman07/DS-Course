@@ -224,9 +224,29 @@ namespace cs211 {
 			std::pair<K, V>* operator ->() {
 				return &ptr->data;
 			}
+
+			V& operator [](const K& key) {
+				iterator it = this->find(key);
+				if (it == this->end()) {
+					insert({ key,V() });
+				}
+				else {
+					return it->second;
+				}
+			}
+
+			v& at(const K&key){
+				iterator it=this->find(key);
+				if(it!=this->end){
+					return it->second;
+				}
+				else{
+					throw "Key Not Found!\n";
+				}
+			}
+
+
 		};
-
-
 
 		iterator begin() {
 			iterator temp;
@@ -250,26 +270,6 @@ namespace cs211 {
 			iterator temp;
 			temp.ptr = this->H;
 			return temp;
-		}
-
-		V& operator [](const K& key) {
-			iterator it = this->find(key);
-			if (it == this->end()) {
-				insert({ key,V() });
-			}
-			else {
-				return it->second;
-			}
-		}
-
-		V& at(const K& key) {
-			iterator it = this->find(key);
-			if (it != this->end) {
-				return it->second;
-			}
-			else {
-				throw "Key Not Found!\n";
-			}
 		}
 
 		iterator find(const K& key) {
