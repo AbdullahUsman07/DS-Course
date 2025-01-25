@@ -94,7 +94,7 @@ namespace cs211 {
 
 			delmap(node->left);
 			delmap(node->right);
-
+			 
 			delete node;
 		}
 
@@ -456,12 +456,14 @@ namespace cs211 {
 
 				if (ptr == parent->right) {
 					parent->right = ptr->left;
+					ptr->left->parent = parent;
 					delete ptr;
 					return true;
 				}
 
 				else {
 					parent->right = ptr->left;
+					ptr->left->parent = parent;
 					delete ptr;
 					return true;
 				}
@@ -474,12 +476,14 @@ namespace cs211 {
 				// check again that if node on its right side of its parent or left
 				if (ptr == parent->right) {
 					parent->right = ptr->right;
+					ptr->right->parent = parent;
 					delete ptr;
 					return true;
 				}
 
 				else {
 					parent->left = ptr->right;
+					ptr->right->parent = parent;
 					delete ptr;
 					return true;
 				}
