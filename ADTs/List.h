@@ -292,6 +292,10 @@ namespace cs211 {
 			}
 		}
 
+		void reverse(){
+			
+		}
+
 	};
 }
 
