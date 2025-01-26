@@ -17,7 +17,7 @@ public:
 	}
 
 	int hash(const K& key) {
-		return key / total_size;
+		return key % total_size;
 	}
 
 	bool insert(const std::pair<K, V>& val) {
