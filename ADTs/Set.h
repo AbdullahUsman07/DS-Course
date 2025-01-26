@@ -350,7 +350,7 @@ namespace cs211 {
 
 
 				// This case will check if the succesor is the leaf node
-				if (parent_succ == ptr) {
+				if (succ->parent == ptr) {
 
 					// now we need to check if the node we want to delete is on
 					// its right side of the parent or left
