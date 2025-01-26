@@ -59,6 +59,7 @@ namespace abd {
 				int index = (h1 + i * (h2 + 1)) % this->SIZE;
 				if (arr[index].first == -1 || arr[index].first == -2) {
 					arr[index] = val;
+					++this->n;
 					return;
 				}
 			}
@@ -93,6 +94,7 @@ namespace abd {
 				int index = (h1 + i * (h2 + 1)) % this->SIZE;
 				if (arr[i].first == key) {
 					arr[i].first = -2;
+					--this->n;
 					return;
 				}
 			}
