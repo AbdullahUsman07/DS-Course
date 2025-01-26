@@ -318,7 +318,7 @@ namespace cs211 {
 				}
 
 				else {
-					parent->right = ptr->left;
+					parent->left = ptr->left;
 					delete ptr;
 					return true;
 				}
