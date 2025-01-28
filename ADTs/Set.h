@@ -481,7 +481,7 @@ namespace cs211 {
 					{
 						// this means the value is equal
 						delete nn;
-						this->SIZE++;
+						this->SIZE--;
 						return;
 					}
 				}
