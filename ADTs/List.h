@@ -1,21 +1,22 @@
 #pragma once
 
-#include<iostream>
+#include <iostream>
 
-template<typename T>
-struct dNode {
+template <typename T>
+struct dNode
+{
 	T data;
-	dNode<T>* next;
-	dNode<T>* prev;
+	dNode<T> *next;
+	dNode<T> *prev;
 };
 
-
-namespace cs211 {
+namespace cs211
+{
 	template <typename T>
-	class list {
+	class list
+	{
 	private:
-
-		dNode<T>* H;
+		dNode<T> *H;
 		int n;
 
 	public:
@@ -26,9 +27,9 @@ namespace cs211 {
 			H->prev = H;
 		}
 
-		void push_front(const T& val)
+		void push_front(const T &val)
 		{
-			dNode<T>* nn;
+			dNode<T> *nn;
 			nn = new dNode<T>;
 			nn->data = val;
 
@@ -36,16 +37,15 @@ namespace cs211 {
 			(this->H->next)->prev = nn;
 			nn->prev = this->H;
 			this->H->next = nn;
-			
+
 			// increment the size
 			++this->n;
-
 		}
 
-		void push_back(const T& val)
+		void push_back(const T &val)
 		{
-			
-			dNode<T>* nn;
+
+			dNode<T> *nn;
 			nn = new dNode<T>;
 			nn->data = val;
 
@@ -64,7 +64,7 @@ namespace cs211 {
 			{
 				return;
 			}
-			dNode<T>* temp;
+			dNode<T> *temp;
 			temp = this->H->next;
 
 			// now the next of the H node start pointing to the second node
@@ -83,11 +83,11 @@ namespace cs211 {
 			{
 				return;
 			}
-			dNode<T>* temp;
+			dNode<T> *temp;
 			temp = this->H->prev;
-			
+
 			// now the previous of the H node start pointing to the second Last Node
-			this->H -> prev = (this->H->prev)->prev;
+			this->H->prev = (this->H->prev)->prev;
 			(this->H->prev)->next = this->H;
 
 			delete temp;
@@ -95,7 +95,7 @@ namespace cs211 {
 			--this->n;
 		}
 
-		list& operator =(const list<T>& rhs)
+		list &operator=(const list<T> &rhs)
 		{
 			if (rhs.H->next == rhs.H)
 			{
@@ -109,10 +109,9 @@ namespace cs211 {
 
 			// now all the previous data has been cleared out
 
-
 			// we will start copying from the next to Next H node
-			dNode<T>* r = rhs.H->next;
-			dNode<T>* l;
+			dNode<T> *r = rhs.H->next;
+			dNode<T> *l;
 			l = new dNode<T>;
 			l->data = r->data;
 			l->next = this->H;
@@ -120,10 +119,10 @@ namespace cs211 {
 			this->H->prev = l;
 			this->H->next = l;
 			r = r->next;
-			
-			while (r!= rhs.H)
+
+			while (r != rhs.H)
 			{
-				dNode<T>* nn;
+				dNode<T> *nn;
 				nn = new dNode<T>;
 				nn->data = r->data;
 				nn->next = l->next;
@@ -141,7 +140,7 @@ namespace cs211 {
 
 		void display()
 		{
-			dNode<T>* temp = this -> H->next;
+			dNode<T> *temp = this->H->next;
 			while (temp != this->H)
 			{
 				std::cout << temp->data << " - > ";
@@ -150,7 +149,7 @@ namespace cs211 {
 			std::cout << " nullptr\n";
 		}
 
-		T front()const
+		T front() const
 		{
 			if (this->H->next != H)
 			{
@@ -159,7 +158,7 @@ namespace cs211 {
 			throw "Empty list";
 		}
 
-		T back()const
+		T back() const
 		{
 			if (this->H->prev != H)
 			{
@@ -168,7 +167,8 @@ namespace cs211 {
 			throw "Empty list";
 		}
 
-		void erase() {
+		void erase()
+		{
 			while (this->H->next != this->H)
 			{
 				pop_front();
@@ -181,49 +181,56 @@ namespace cs211 {
 			delete this->H;
 		}
 
-		
-
-		class iterator {
+		class iterator
+		{
 		private:
-			dNode<T>* ptr;
+			dNode<T> *ptr;
 			friend list;
 
 		public:
-			iterator() :ptr(nullptr) {};
+			iterator() : ptr(nullptr) {};
 
-			T operator *() {
+			T operator*()
+			{
 				return ptr->data;
 			}
 
-			T* operator ->() {
+			T *operator->()
+			{
 				return &(this->ptr->data);
 			}
-			bool operator==(const iterator& other) {
+			bool operator==(const iterator &other)
+			{
 				return (this->ptr == other.ptr);
 			}
 
-			bool operator!=(const iterator& other) {
+			bool operator!=(const iterator &other)
+			{
 				return !(this->ptr == other.ptr);
 			}
 
-			iterator operator++(int) {
+			iterator operator++(int)
+			{
 				iterator temp;
 				temp.ptr = this->ptr;
 				this->ptr = this->ptr->next;
 				return temp;
 			}
 
-			iterator operator++() {
+			iterator operator++()
+			{
 				this->ptr = this->ptr->next;
 				return *this;
 			}
 
-			iterator operator --() {
+			iterator operator--()
+			{
 				this->ptr = this->ptr->prev;
 				return *this;
 			}
 
-			iterator operator --(int) {
+			iterator operator--(int)
+			{
 				iterator temp;
 				temp.ptr = this->ptr;
 				this->ptr = this->ptr->prev;
@@ -231,60 +238,75 @@ namespace cs211 {
 			}
 		};
 
-		iterator begin() {
+		iterator begin()
+		{
 			iterator iter;
 			iter.ptr = this->H->next;
 			return iter;
 		}
 
-		iterator end() {
+		iterator end()
+		{
 			iterator iter;
 			iter.ptr = this->H;
 			return iter;
 		}
 
-		void resize(int count, const T& val) {
+		void resize(int count, const T &val)
+		{
 
-			if (this->n == count) {
+			if (this->n == count)
+			{
 				return;
 			}
 
-			if (this->n > count) {
-				while (this->n != count) {
+			if (this->n > count)
+			{
+				while (this->n != count)
+				{
 					pop_back();
 				}
 			}
 
-			else {
-				while (this->n < count) {
-					while (this->n != count) {
+			else
+			{
+				while (this->n < count)
+				{
+					while (this->n != count)
+					{
 						push_back(val);
 					}
 				}
 			}
 		}
 
-		void unique() {
+		void unique()
+		{
 
-			dNode<T>* current = this->H->next;
-			
-			while (current != this->H && current->next != this->H) {
+			dNode<T> *current = this->H->next;
 
-				dNode<T>* ptr = current->next;
+			while (current != this->H && current->next != this->H)
+			{
 
-				while (ptr != this->H) {
+				dNode<T> *ptr = current->next;
 
-					if (ptr->data == current->data) {
-						dNode<T>* temp;
+				while (ptr != this->H)
+				{
+
+					if (ptr->data == current->data)
+					{
+						dNode<T> *temp;
 						temp = ptr;
 						ptr = ptr->next;
 						temp->prev->next = nxt;
-						if (nxt != this->H) {
+						if (nxt != this->H)
+						{
 							nxt->prev = temp->prev;
 						}
 						delete temp;
 					}
-					else {
+					else
+					{
 						ptr = ptr->next;
 					}
 				}
@@ -292,10 +314,40 @@ namespace cs211 {
 			}
 		}
 
-		void reverse(){
-			
+		void reverse()
+		{
+
+			dNode<T> *curr;
+			curr = this->H;
+
+			do
+			{
+				dNode<T> *next = curr->next;
+				curr->next = curr->prev;
+				curr->prev = next;
+				curr = next;
+			} while (curr != this->H);
 		}
 
+		void splice(const iterator &pos, list<T> &other)
+		{
+			if(other.H->next==other.H){
+				return;
+			}
+
+			dNode<T> *posAfter = pos.ptr;
+			dNode<T> *posBefore = pos.ptr->prev;
+
+			dNode<T>*firstNode=other.H->next;
+			dNode<T>*lastNode=other.H->prev;
+
+			firstNode->prev=posBefore;
+			posBefore->next=firstNode;
+
+			lastNode->next=posAfter;
+			posAfter->prev=lastNode;
+
+
+		}
 	};
 }
-

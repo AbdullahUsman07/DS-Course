@@ -376,14 +376,27 @@ namespace cs211 {
 				// we are deleting the root node
 
 				else if (parent == this->H) {
-					succ->right = ptr->right;
-					ptr->right->parent = succ;
-					succ->left = ptr->left;
-					ptr->left->parent = succ;
-					succ->parent = parent;
-					this->H->parent = succ;
-					delete ptr;
-					return true;
+					// special case if sucessor is present on the right of the root node
+					if (succ == ptr->right)
+					{
+						succ->left = ptr->left;
+						ptr->left->parent = succ;
+						succ->parent = ptr->parent;
+						ptr->parent->parent = succ;
+						delete ptr;
+						return true;
+					}
+					else
+					{
+						succ->right = ptr->right;
+						ptr->right->parent = succ;
+						succ->left = ptr->left;
+						ptr->left->parent = succ;
+						succ->parent = parent;
+						this->H->parent = succ;
+						delete ptr;
+						return true;
+					}
 				}
 
 				else {
